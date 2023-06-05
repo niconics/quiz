@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        #score {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-weight: bold;
+        background-color: #f8f8f8;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .button-correct {
+            background-color: green;
+            color: white;
+        }
+        .button-incorrect {
+            background-color: red;
+            color: white;
+        }
+        .button-disabled {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess my favorites</h1>
+
+    <h2>Guess my favorite color</h2>
+    <br>
+    <p><button id="colorA" onclick="handleColorChoice('A')">A</button>. Blue</p>
+    <p><button id="colorB" onclick="handleColorChoice('B')">B</button>. Yellow</p>
+    <p><button id="colorC" onclick="handleColorChoice('C')">C</button>. Green</p>
+
+    <p id="colorResult"></p>
+
+    <h2>Guess my favorite drink</h2>
+    <br>
+    <p><button id="drinkA" onclick="handleDrinkChoice('A')">A</button>. Juice</p>
+    <p><button id="drinkB" onclick="handleDrinkChoice('B')">B</button>. Coffee</p>
+    <p><button id="drinkC" onclick="handleDrinkChoice('C')">C</button>. Tea</p>
+
+    <p id="drinkResult"></p>
+
+    <p id="score"></p>
+
+    <script>
+        var score = 0;
+
+        // Function to handle color choice
+        function handleColorChoice(choice) {
+            if (choice === 'B') {
+                document.getElementById('colorResult').textContent = "Correct! The answer is B. Yellow";
+                document.getElementById('colorResult').className = "correct";
+                document.getElementById('color' + choice).classList.add('button-correct');
+                score++;
+            } else {
+                document.getElementById('colorResult').textContent = "Incorrect! The answer is B. Yellow";
+                document.getElementById('colorResult').className = "incorrect";
+                document.getElementById('color' + choice).classList.add('button-incorrect');
+            }
+
+            disableColorButtons(choice);
+            showScore();
+        }
+
+        // Function to handle drink choice
+        function handleDrinkChoice(choice) {
+            if (choice === 'B') {
+                document.getElementById('drinkResult').textContent = "Correct! The answer is B. Coffee";
+                document.getElementById('drinkResult').className = "correct";
+                document.getElementById('drink' + choice).classList.add('button-correct');
+                score++;
+            } else {
+                document.getElementById('drinkResult').textContent = "Incorrect! The answer is B. Coffee";
+                document.getElementById('drinkResult').className = "incorrect";
+                document.getElementById('drink' + choice).classList.add('button-incorrect');
+            }
+
+            disableDrinkButtons(choice);
+            showScore();
+        }
+
+        // Function to disable color buttons
+        function disableColorButtons(choice) {
+            var colorButtons = document.querySelectorAll('#colorA, #colorB, #colorC');
+            for (var i = 0; i < colorButtons.length; i++) {
+                var button = colorButtons[i];
+                if (button.id !== 'color' + choice) {
+                    button.classList.add('button-disabled');
+                    button.disabled = true;
+                }
+            }
+        }
+
+        // Function to disable drink buttons
+        function disableDrinkButtons(choice) {
+            var drinkButtons = document.querySelectorAll('#drinkA, #drinkB, #drinkC');
+            for (var i = 0; i < drinkButtons.length; i++) {
+                var button = drinkButtons[i];
+                if (button.id !== 'drink' + choice) {
+                    button.classList.add('button-disabled');
+                    button.disabled = true;
+                }
+            }
+        }
+
+        // Function to show score
+        function showScore() {
+            document.getElementById('score').textContent = "Your score: " + score;
+        }
+    </script>
+</body>
+</html>
