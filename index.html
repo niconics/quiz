@@ -2,58 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="Style.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 5px;
+        }
         .correct {
             color: green;
         }
         .incorrect {
             color: red;
         }
-        #score {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            font-weight: bold;
-            background-color: #f8f8f8;
-            padding: 5px 10px;
+        .button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        #highestScore {
-            position: fixed;
-            top: 10px;
-            right: 130px;
+            font-size: 16px;
             font-weight: bold;
-            background-color: #f8f8f8;
-            padding: 5px 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #000; /* Updated color for better visibility */
+            cursor: pointer;
         }
+
         .button-correct {
             background-color: green;
-            color: white;
         }
+
         .button-incorrect {
             background-color: red;
-            color: white;
         }
-        .button-disabled {
-            background-color: gray;
-            color: white;
+
+        #score {
+            margin-top: 20px;
+            font-weight: bold;
         }
+
+        #highestScore {
+            margin-top: 10px;
+        }
+
         #resetButton {
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #f8f8f8;
-            padding: 5px 10px;
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f8f8f8;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -61,32 +77,28 @@
     <h1>Guess my favorites</h1>
 
     <h2>Guess my favorite color</h2>
-    <br>
-    <p><button id="colorA" onclick="handleColorChoice('A')">A</button>. Blue</p>
-    <p><button id="colorB" onclick="handleColorChoice('B')">B</button>. Yellow</p>
-    <p><button id="colorC" onclick="handleColorChoice('C')">C</button>. Green</p>
+    <p><button class="button" id="colorA" onclick="handleColorChoice('A')">A. Blue</button></p>
+    <p><button class="button" id="colorB" onclick="handleColorChoice('B')">B. Yellow</button></p>
+    <p><button class="button" id="colorC" onclick="handleColorChoice('C')">C. Green</button></p>
 
     <p id="colorResult"></p>
 
     <h2>Guess my favorite drink</h2>
-    <br>
-    <p><button id="drinkA" onclick="handleDrinkChoice('A')">A</button>. Juice</p>
-    <p><button id="drinkB" onclick="handleDrinkChoice('B')">B</button>. Coffee</p>
-    <p><button id="drinkC" onclick="handleDrinkChoice('C')">C</button>. Tea</p>
+    <p><button class="button" id="drinkA" onclick="handleDrinkChoice('A')">A. Juice</button></p>
+    <p><button class="button" id="drinkB" onclick="handleDrinkChoice('B')">B. Coffee</button></p>
+    <p><button class="button" id="drinkC" onclick="handleDrinkChoice('C')">C. Tea</button></p>
 
     <p id="drinkResult"></p>
 
     <p id="score"></p>
     <p id="highestScore"></p>
 
-    <!-- Reset button -->
     <button id="resetButton" onclick="resetQuiz()">Reset</button>
 
     <script>
         var score = 0;
         var highestScore = 0;
 
-        // Function to handle color choice
         function handleColorChoice(choice) {
             var colorButtons = document.querySelectorAll('#colorA, #colorB, #colorC');
 
@@ -106,7 +118,7 @@
                         document.getElementById('colorResult').className = "incorrect";
                     }
                 } else if (!button.classList.contains('button-correct')) {
-                    button.classList.add('button-disabled');
+                    button.disabled = true;
                 }
             }
 
@@ -114,7 +126,6 @@
             showScore();
         }
 
-        // Function to handle drink choice
         function handleDrinkChoice(choice) {
             var drinkButtons = document.querySelectorAll('#drinkA, #drinkB, #drinkC');
 
@@ -134,7 +145,7 @@
                         document.getElementById('drinkResult').className = "incorrect";
                     }
                 } else if (!button.classList.contains('button-correct')) {
-                    button.classList.add('button-disabled');
+                    button.disabled = true;
                 }
             }
 
@@ -142,12 +153,10 @@
             showScore();
         }
 
-        // Function to show score
         function showScore() {
             document.getElementById('score').textContent = "Your score: " + score;
         }
 
-        // Function to update highest score
         function updateHighestScore() {
             if (score > highestScore) {
                 highestScore = score;
@@ -155,27 +164,24 @@
             document.getElementById('highestScore').textContent = "Highest score: " + highestScore;
         }
 
-        // Function to reset the quiz
         function resetQuiz() {
             score = 0;
 
-            // Reset color section
             document.getElementById('colorResult').textContent = "";
             document.getElementById('colorResult').className = "";
             var colorButtons = document.querySelectorAll('#colorA, #colorB, #colorC');
             for (var i = 0; i < colorButtons.length; i++) {
                 var button = colorButtons[i];
-                button.classList.remove('button-correct', 'button-incorrect', 'button-disabled');
+                button.classList.remove('button-correct', 'button-incorrect');
                 button.disabled = false;
             }
 
-            // Reset drink section
             document.getElementById('drinkResult').textContent = "";
             document.getElementById('drinkResult').className = "";
             var drinkButtons = document.querySelectorAll('#drinkA, #drinkB, #drinkC');
             for (var i = 0; i < drinkButtons.length; i++) {
                 var button = drinkButtons[i];
-                button.classList.remove('button-correct', 'button-incorrect', 'button-disabled');
+                button.classList.remove('button-correct', 'button-incorrect');
                 button.disabled = false;
             }
 
