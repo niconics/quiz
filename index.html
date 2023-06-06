@@ -90,6 +90,63 @@
 
     <p id="drinkResult"></p>
 
+    <h2>Additional Questions</h2>
+    <h2>Guess my favorite hero in ML</h2>
+    <p><button class="button" id="heroA" onclick="handleHeroChoice('A')">A. Alucard</button></p>
+    <p><button class="button" id="heroB" onclick="handleHeroChoice('B')">B. Novaria</button></p>
+    <p><button class="button" id="heroC" onclick="handleHeroChoice('C')">C. Gusion</button></p>
+
+    <p id="heroResult"></p>
+
+    <h2>Guess my favorite NBA player</h2>
+    <p><button class="button" id="nbaA" onclick="handleNBAChoice('A')">A. Michael Jordan</button></p>
+    <p><button class="button" id="nbaB" onclick="handleNBAChoice('B')">B. Kobe Bryant</button></p>
+    <p><button class="button" id="nbaC" onclick="handleNBAChoice('C')">C. LeBron James</button></p>
+
+    <p id="nbaResult"></p>
+
+    <h2>Guess my favorite sport</h2>
+    <p><button class="button" id="sportA" onclick="handleSportChoice('A')">A. Football</button></p>
+    <p><button class="button" id="sportB" onclick="handleSportChoice('B')">B. Basketball</button></p>
+    <p><button class="button" id="sportC" onclick="handleSportChoice('C')">C. Tennis</button></p>
+
+    <p id="sportResult"></p>
+
+    <h2>Guess my favorite esport</h2>
+    <p><button class="button" id="esportA" onclick="handleEsportChoice('A')">A. Dota 2</button></p>
+    <p><button class="button" id="esportB" onclick="handleEsportChoice('B')">B. Mobile Legends</button></p>
+    <p><button class="button" id="esportC" onclick="handleEsportChoice('C')">C. Counter-Strike: Global Offensive</button></p>
+
+    <p id="esportResult"></p>
+
+    <h2>Guess my favorite pet</h2>
+    <p><button class="button" id="petA" onclick="handlePetChoice('A')">A. Dog</button></p>
+    <p><button class="button" id="petB" onclick="handlePetChoice('B')">B. Cat</button></p>
+    <p><button class="button" id="petC" onclick="handlePetChoice('C')">C. Bird</button></p>
+
+    <p id="petResult"></p>
+
+    <h2>Guess my favorite dessert</h2>
+    <p><button class="button" id="dessertA" onclick="handleDessertChoice('A')">A. Cake</button></p>
+    <p><button class="button" id="dessertB" onclick="handleDessertChoice('B')">B. Ice cream</button></p>
+    <p><button class="button" id="dessertC" onclick="handleDessertChoice('C')">C. Pie</button></p>
+
+    <p id="dessertResult"></p>
+
+    <h2>Guess my favorite female Filipino artist</h2>
+    <p><button class="button" id="artistA" onclick="handleArtistChoice('A')">A. Sarah Geronimo</button></p>
+    <p><button class="button" id="artistB" onclick="handleArtistChoice('B')">B. Yassi Pressman</button></p>
+    <p><button class="button" id="artistC" onclick="handleArtistChoice('C')">C. Lea Salonga</button></p>
+
+    <p id="artistResult"></p>
+
+    <h2>Guess my favorite day of the week</h2>
+    <p><button class="button" id="dayA" onclick="handleDayChoice('A')">A. Monday</button></p>
+    <p><button class="button" id="dayB" onclick="handleDayChoice('B')">B. Friday</button></p>
+    <p><button class="button" id="dayC" onclick="handleDayChoice('C')">C. Sunday</button></p>
+
+    <p id="dayResult"></p>
+
     <p id="score"></p>
     <p id="highestScore"></p>
 
@@ -153,40 +210,259 @@
             showScore();
         }
 
+        function handleHeroChoice(choice) {
+            var heroButtons = document.querySelectorAll('#heroA, #heroB, #heroC');
+
+            for (var i = 0; i < heroButtons.length; i++) {
+                var button = heroButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'hero' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('heroResult').textContent = "Correct! The answer is B. Novaria";
+                        document.getElementById('heroResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('heroResult').textContent = "Incorrect! The answer is B. Novaria";
+                        document.getElementById('heroResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handleNBAChoice(choice) {
+            var nbaButtons = document.querySelectorAll('#nbaA, #nbaB, #nbaC');
+
+            for (var i = 0; i < nbaButtons.length; i++) {
+                var button = nbaButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'nba' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('nbaResult').textContent = "Correct! The answer is B. Kobe Bryant";
+                        document.getElementById('nbaResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('nbaResult').textContent = "Incorrect! The answer is B. Kobe Bryant";
+                        document.getElementById('nbaResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handleSportChoice(choice) {
+            var sportButtons = document.querySelectorAll('#sportA, #sportB, #sportC');
+
+            for (var i = 0; i < sportButtons.length; i++) {
+                var button = sportButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'sport' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('sportResult').textContent = "Correct! The answer is B. Basketball";
+                        document.getElementById('sportResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('sportResult').textContent = "Incorrect! The answer is B. Basketball";
+                        document.getElementById('sportResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handleEsportChoice(choice) {
+            var esportButtons = document.querySelectorAll('#esportA, #esportB, #esportC');
+
+            for (var i = 0; i < esportButtons.length; i++) {
+                var button = esportButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'esport' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('esportResult').textContent = "Correct! The answer is B. Mobile Legends";
+                        document.getElementById('esportResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('esportResult').textContent = "Incorrect! The answer is B. Mobile Legends";
+                        document.getElementById('esportResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handlePetChoice(choice) {
+            var petButtons = document.querySelectorAll('#petA, #petB, #petC');
+
+            for (var i = 0; i < petButtons.length; i++) {
+                var button = petButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'pet' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('petResult').textContent = "Correct! The answer is B. Cat";
+                        document.getElementById('petResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('petResult').textContent = "Incorrect! The answer is B. Cat";
+                        document.getElementById('petResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handleDessertChoice(choice) {
+            var dessertButtons = document.querySelectorAll('#dessertA, #dessertB, #dessertC');
+
+            for (var i = 0; i < dessertButtons.length; i++) {
+                var button = dessertButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'dessert' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('dessertResult').textContent = "Correct! The answer is B. Ice cream";
+                        document.getElementById('dessertResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('dessertResult').textContent = "Incorrect! The answer is B. Ice cream";
+                        document.getElementById('dessertResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handleArtistChoice(choice) {
+            var artistButtons = document.querySelectorAll('#artistA, #artistB, #artistC');
+
+            for (var i = 0; i < artistButtons.length; i++) {
+                var button = artistButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'artist' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('artistResult').textContent = "Correct! The answer is B. Yassi Pressman";
+                        document.getElementById('artistResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('artistResult').textContent = "Incorrect! The answer is B. Yassi Pressman";
+                        document.getElementById('artistResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
+        function handleDayChoice(choice) {
+            var dayButtons = document.querySelectorAll('#dayA, #dayB, #dayC');
+
+            for (var i = 0; i < dayButtons.length; i++) {
+                var button = dayButtons[i];
+                button.disabled = true;
+
+                if (button.id === 'day' + choice) {
+                    if (choice === 'B') {
+                        button.classList.add('button-correct');
+                        document.getElementById('dayResult').textContent = "Correct! The answer is B. Friday";
+                        document.getElementById('dayResult').className = "correct";
+                        score++;
+                    } else {
+                        button.classList.add('button-incorrect');
+                        document.getElementById('dayResult').textContent = "Incorrect! The answer is B. Friday";
+                        document.getElementById('dayResult').className = "incorrect";
+                    }
+                } else if (!button.classList.contains('button-correct')) {
+                    button.disabled = true;
+                }
+            }
+
+            updateHighestScore();
+            showScore();
+        }
+
         function showScore() {
-            document.getElementById('score').textContent = "Your score: " + score;
+            document.getElementById('score').textContent = "Score: " + score + "/8";
         }
 
         function updateHighestScore() {
             if (score > highestScore) {
                 highestScore = score;
+                document.getElementById('highestScore').textContent = "Highest Score: " + highestScore + "/8";
             }
-            document.getElementById('highestScore').textContent = "Highest score: " + highestScore;
         }
 
         function resetQuiz() {
             score = 0;
 
-            document.getElementById('colorResult').textContent = "";
-            document.getElementById('colorResult').className = "";
-            var colorButtons = document.querySelectorAll('#colorA, #colorB, #colorC');
-            for (var i = 0; i < colorButtons.length; i++) {
-                var button = colorButtons[i];
-                button.classList.remove('button-correct', 'button-incorrect');
+            var buttons = document.querySelectorAll('.button');
+
+            for (var i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
                 button.disabled = false;
+                button.classList.remove('button-correct');
+                button.classList.remove('button-incorrect');
             }
 
+            document.getElementById('colorResult').textContent = "";
             document.getElementById('drinkResult').textContent = "";
-            document.getElementById('drinkResult').className = "";
-            var drinkButtons = document.querySelectorAll('#drinkA, #drinkB, #drinkC');
-            for (var i = 0; i < drinkButtons.length; i++) {
-                var button = drinkButtons[i];
-                button.classList.remove('button-correct', 'button-incorrect');
-                button.disabled = false;
-            }
+            document.getElementById('heroResult').textContent = "";
+            document.getElementById('nbaResult').textContent = "";
+            document.getElementById('sportResult').textContent = "";
+            document.getElementById('esportResult').textContent = "";
+            document.getElementById('petResult').textContent = "";
+            document.getElementById('dessertResult').textContent = "";
+            document.getElementById('artistResult').textContent = "";
+            document.getElementById('dayResult').textContent = "";
 
             showScore();
         }
     </script>
 </body>
+
 </html>
