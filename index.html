@@ -10,10 +10,30 @@
             padding: 20px;
             text-align: center;
         }
-
-        h1 {
-            margin-top: 0;
+        #coffeeImage {
+            display: none;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
         }
+        .yellow-background {
+            background-color: yellow;
+        }
+        .bounce {
+        animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-20px);
+        }
+        60% {
+            transform: translateY(-10px);
+        }
+    }
 
         h2 {
             margin-top: 30px;
@@ -74,72 +94,72 @@
     </style>
 </head>
 <body>
-    <h1>Guess my favorites</h1>
+  <h1 class="bounce">Guess my favorites</h1>
 
-    <h2>Guess my favorite color</h2>
+    <h2 class="bounce">Guess my favorite color</h2>
     <p><button class="button" id="colorA" onclick="handleColorChoice('A')">A. Blue</button></p>
     <p><button class="button" id="colorB" onclick="handleColorChoice('B')">B. Yellow</button></p>
     <p><button class="button" id="colorC" onclick="handleColorChoice('C')">C. Green</button></p>
 
     <p id="colorResult"></p>
 
-    <h2>Guess my favorite drink</h2>
+    <h2 class="bounce">Guess my favorite drink</h2>
     <p><button class="button" id="drinkA" onclick="handleDrinkChoice('A')">A. Juice</button></p>
     <p><button class="button" id="drinkB" onclick="handleDrinkChoice('B')">B. Coffee</button></p>
     <p><button class="button" id="drinkC" onclick="handleDrinkChoice('C')">C. Tea</button></p>
 
     <p id="drinkResult"></p>
 
-    <h2>Guess my favorite hero in ML</h2>
+    <h2 class="bounce">Guess my favorite hero in ML</h2>
     <p><button class="button" id="heroA" onclick="handleHeroChoice('A')">A. Alucard</button></p>
     <p><button class="button" id="heroB" onclick="handleHeroChoice('B')">B. Ling</button></p>
     <p><button class="button" id="heroC" onclick="handleHeroChoice('C')">C. Novaria</button></p>
 
     <p id="heroResult"></p>
 
-    <h2>Guess my favorite NBA player</h2>
+    <h2 class="bounce">Guess my favorite NBA player</h2>
     <p><button class="button" id="nbaA" onclick="handleNBAChoice('A')">A. Kobe Bryant</button></p>
     <p><button class="button" id="nbaB" onclick="handleNBAChoice('B')">B. Michael Jordan</button></p>
     <p><button class="button" id="nbaC" onclick="handleNBAChoice('C')">C. LeBron James</button></p>
 
     <p id="nbaResult"></p>
 
-    <h2>Guess my favorite sport</h2>
+    <h2 class="bounce">Guess my favorite sport</h2>
     <p><button class="button" id="sportA" onclick="handleSportChoice('A')">A. Football</button></p>
     <p><button class="button" id="sportB" onclick="handleSportChoice('B')">B. Basketball</button></p>
     <p><button class="button" id="sportC" onclick="handleSportChoice('C')">C. Badminton</button></p>
 
     <p id="sportResult"></p>
 
-    <h2>Guess my favorite esport</h2>
+    <h2 class="bounce">Guess my favorite esport</h2>
     <p><button class="button" id="esportA" onclick="handleEsportChoice('A')">A. Dota 2</button></p>
     <p><button class="button" id="esportB" onclick="handleEsportChoice('B')">B. Mobile Legends</button></p>
     <p><button class="button" id="esportC" onclick="handleEsportChoice('C')">C. League of legends</button></p>
 
     <p id="esportResult"></p>
 
-    <h2>Guess my favorite pet</h2>
+    <h2 class="bounce">Guess my favorite pet</h2>
     <p><button class="button" id="petA" onclick="handlePetChoice('A')">A. Cat</button></p>
     <p><button class="button" id="petB" onclick="handlePetChoice('B')">B. Dog</button></p>
     <p><button class="button" id="petC" onclick="handlePetChoice('C')">C. Bird</button></p>
 
     <p id="petResult"></p>
 
-    <h2>Guess my favorite dessert</h2>
+    <h2 class="bounce">Guess my favorite dessert</h2>
     <p><button class="button" id="dessertA" onclick="handleDessertChoice('A')">A. Cake</button></p>
     <p><button class="button" id="dessertB" onclick="handleDessertChoice('B')">B. Ice cream</button></p>
     <p><button class="button" id="dessertC" onclick="handleDessertChoice('C')">C. Pie</button></p>
 
     <p id="dessertResult"></p>
 
-    <h2>Guess my favorite female Filipino artist</h2>
+    <h2 class="bounce">Guess my favorite female Filipino artist</h2>
     <p><button class="button" id="artistA" onclick="handleArtistChoice('A')">A. Sarah Geronimo</button></p>
     <p><button class="button" id="artistB" onclick="handleArtistChoice('B')">B. Anne Curtis</button></p>
     <p><button class="button" id="artistC" onclick="handleArtistChoice('C')">C. Yassi Pressman</button></p>
 
     <p id="artistResult"></p>
 
-    <h2>Guess my favorite day of the week</h2>
+    <h2 class="bounce" >Guess my favorite day of the week</h2>
     <p><button class="button" id="dayA" onclick="handleDayChoice('A')">A. Saturday</button></p>
     <p><button class="button" id="dayB" onclick="handleDayChoice('B')">B. Sunday</button></p>
     <p><button class="button" id="dayC" onclick="handleDayChoice('C')">C. Friday</button></p>
@@ -168,6 +188,11 @@
                         document.getElementById('colorResult').textContent = "Correct!";
                         document.getElementById('colorResult').className = "correct";
                         score++;
+                        document.body.classList.add('yellow-background');
+                        setTimeout(function() {
+                        document.body.classList.remove('yellow-background');
+                        }, 3000);
+
                     } else {
                         button.classList.add('button-incorrect');
                         document.getElementById('colorResult').textContent = "Incorrect!";
@@ -183,31 +208,31 @@
         }
 
         function handleDrinkChoice(choice) {
-            var drinkButtons = document.querySelectorAll('#drinkA, #drinkB, #drinkC');
+    var drinkButtons = document.querySelectorAll('#drinkA, #drinkB, #drinkC');
 
-            for (var i = 0; i < drinkButtons.length; i++) {
-                var button = drinkButtons[i];
-                button.disabled = true;
+    for (var i = 0; i < drinkButtons.length; i++) {
+        var button = drinkButtons[i];
+        button.disabled = true;
 
-                if (button.id === 'drink' + choice) {
-                    if (choice === 'B') {
-                        button.classList.add('button-correct');
-                        document.getElementById('drinkResult').textContent = "Correct!";
-                        document.getElementById('drinkResult').className = "correct";
-                        score++;
-                    } else {
-                        button.classList.add('button-incorrect');
-                        document.getElementById('drinkResult').textContent = "Incorrect!";
-                        document.getElementById('drinkResult').className = "incorrect";
-                    }
-                } else if (!button.classList.contains('button-correct')) {
-                    button.disabled = true;
-                }
+        if (button.id === 'drink' + choice) {
+            if (choice === 'B') {
+                button.classList.add('button-correct');
+                document.getElementById('drinkResult').textContent = "Correct!";
+                document.getElementById('drinkResult').className = "correct";
+                score++;
+            } else {
+                button.classList.add('button-incorrect');
+                document.getElementById('drinkResult').textContent = "Incorrect!";
+                document.getElementById('drinkResult').className = "incorrect";
             }
-
-            updateHighestScore();
-            showScore();
+        } else if (!button.classList.contains('button-correct')) {
+            button.disabled = true;
         }
+    }
+
+    updateHighestScore();
+    showScore();
+}
 
         function handleHeroChoice(choice) {
             var heroButtons = document.querySelectorAll('#heroA, #heroB, #heroC');
